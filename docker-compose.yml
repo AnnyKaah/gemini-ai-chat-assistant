@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+  api-ia:
+    build: .
+    container_name: api-ia-container
+    ports:
+      - "3000:3000"
+    # Loads environment variables from your local .env file
+    # This is perfect for development and production
+    env_file:
+      - .env
+    restart: unless-stopped

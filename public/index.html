@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Assistant</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/atom-one-dark.min.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="chat-container">
+      <header class="chat-header">
+        <h1>Your Personal Assistant</h1>
+        <div class="controls-container">
+          <p>Powered by Gemini</p>
+          <div class="settings-group">
+            <div class="personality-selector">
+              <label for="personality-select">Personality:</label>
+              <select id="personality-select">
+                <option value="default">Default</option>
+                <option value="sarcastic">Sarcastic</option>
+                <option value="pirate">Pirate</option>
+                <option value="shakespeare">Shakespeare</option>
+              </select>
+            </div>
+            <button id="theme-toggle-btn" class="icon-btn" title="Toggle theme">
+              🌙
+            </button>
+            <button id="clear-chat-btn" class="icon-btn" title="Clear chat">
+              🗑️
+            </button>
+          </div>
+        </div>
+      </header>
+
+      <main id="chat-messages" class="chat-messages">
+        <!-- Chat messages will be inserted here -->
+        <div class="message model-message">
+          <img src="bot-avatar.svg" alt="AI" class="avatar" />
+          <div class="message-content">
+            <p>Hello! How can I help you today?</p>
+          </div>
+        </div>
+      </main>
+
+      <footer class="chat-input-area">
+        <form id="chat-form" class="chat-form">
+          <div class="input-wrapper">
+            <!-- left clip -->
+            <button
+              type="button"
+              id="attach-file-btn"
+              class="icon-btn"
+              title="Attach image"
+            >
+              📎
+            </button>
+
+            <!-- typing field -->
+            <textarea
+              id="prompt-input"
+              placeholder="Type your message or attach an image..."
+              rows="1"
+            ></textarea>
+            <input type="file" id="image-input" accept="image/*" hidden />
+          </div>
+
+          <!-- send button -->
+          <button type="submit" id="send-btn" class="icon-btn" title="Send">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              width="24"
+              height="24"
+            >
+              <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+            </svg>
+          </button>
+        </form>
+
+        <!-- image preview -->
+        <div
+          id="image-preview-container"
+          class="image-preview-container"
+          style="display: none"
+        >
+          <img id="image-preview" src="#" alt="Image preview" />
+          <button id="remove-image-btn">&times;</button>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

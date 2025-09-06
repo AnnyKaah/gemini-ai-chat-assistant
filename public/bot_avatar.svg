@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Bot avatar SVG - copy this file or inline the SVG in your HTML -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="400" height="400" role="img" aria-labelledby="title desc">
+  <title id="title">Friendly bot avatar</title>
+  <desc id="desc">A simple, colorful robot head with animated antenna and blinking eyes. Scalable SVG.</desc>
+
+  <defs>
+    <linearGradient id="headGrad" x1="0" x2="1">
+      <stop offset="0%" stop-color="#7dd3fc" />
+      <stop offset="100%" stop-color="#60a5fa" />
+    </linearGradient>
+    <filter id="softShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#000" flood-opacity="0.18"/>
+    </filter>
+
+    <!-- subtle floating animation via SVG animateTransform on a group -->
+  </defs>
+
+  <!-- background circle for framing -->
+  <circle cx="100" cy="100" r="96" fill="#f8fafc" />
+
+  <!-- Robot group with float animation -->
+  <g id="robot" filter="url(#softShadow)">
+    <g>
+      <animateTransform attributeName="transform" attributeType="XML" type="translate" values="0 0; 0 -4; 0 0" dur="3.6s" repeatCount="indefinite" />
+    </g>
+
+    <!-- head -->
+    <rect x="34" y="50" width="132" height="108" rx="18" ry="18" fill="url(#headGrad)" stroke="#0ea5e9" stroke-width="2" />
+
+    <!-- antenna -->
+    <g id="antenna" transform="translate(100,40)">
+      <line x1="0" y1="-6" x2="0" y2="14" stroke="#0ea5e9" stroke-width="3" stroke-linecap="round" />
+      <circle cx="0" cy="-10" r="8" fill="#f472b6">
+        <animateTransform attributeName="transform" attributeType="XML" type="translate" values="0 0; 0 -4; 0 0" dur="1.2s" repeatCount="indefinite" />
+      </circle>
+    </g>
+
+    <!-- eyes -->
+    <g id="eyes" transform="translate(0,10)">
+      <!-- left eye -->
+      <g transform="translate(64,98)">
+        <circle cx="0" cy="0" r="14" fill="#fff" />
+        <circle cx="0" cy="0" r="6" fill="#0f172a">
+          <!-- tiny pupil drift animation -->
+          <animateTransform attributeName="transform" attributeType="XML" type="translate" values="0 0; 2 0; 0 0" dur="4s" repeatCount="indefinite" />
+        </circle>
+        <!-- eyelid (blink) -->
+        <rect x="-14" y="-14" width="28" height="28" fill="#7dd3fc" opacity="0">
+          <animate attributeName="opacity" values="0;1;0" dur="4s" begin="0.8s" repeatCount="indefinite" />
+        </rect>
+      </g>
+
+      <!-- right eye -->
+      <g transform="translate(136,98)">
+        <circle cx="0" cy="0" r="14" fill="#fff" />
+        <circle cx="0" cy="0" r="6" fill="#0f172a">
+          <animateTransform attributeName="transform" attributeType="XML" type="translate" values="0 0; -2 0; 0 0" dur="4s" repeatCount="indefinite" />
+        </circle>
+        <!-- eyelid (blink) -->
+        <rect x="-14" y="-14" width="28" height="28" fill="#7dd3fc" opacity="0">
+          <animate attributeName="opacity" values="0;1;0" dur="4s" begin="1.0s" repeatCount="indefinite" />
+        </rect>
+      </g>
+    </g>
+
+    <!-- mouth -->
+    <g transform="translate(0,28)">
+      <rect x="74" y="140" width="52" height="8" rx="4" fill="#082f49" opacity="0.95" />
+      <!-- friendly smile glow -->
+      <rect x="74" y="140" width="52" height="8" rx="4" fill="#fff" opacity="0.06">
+        <animate attributeName="opacity" values="0.06;0.18;0.06" dur="2.2s" repeatCount="indefinite" />
+      </rect>
+    </g>
+
+    <!-- chest light -->
+    <circle cx="100" cy="122" r="10" fill="#bae6fd" opacity="0.9">
+      <animate attributeName="r" values="8;11;8" dur="2.8s" repeatCount="indefinite" />
+    </circle>
+  </g>
+
+  <!-- small signature (editable) -->
+  <text x="100" y="188" font-size="9" font-family="Verdana,Arial,sans-serif" text-anchor="middle" fill="#6b7280">bot avatar • customizable</text>
+</svg>
