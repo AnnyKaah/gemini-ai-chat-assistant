@@ -2,6 +2,7 @@ import { Router } from "express";
 import { body } from "express-validator";
 import multer from "multer";
 import { generateText } from "../controllers/textController.js";
+import handleValidationErrors from "../middleware/validationMiddleware.js";
 
 const router = Router();
 
@@ -35,6 +36,7 @@ router.post(
   "/gerar-texto",
   upload.single("image"), // Middleware to process a single file named 'image'
   validateGenerateText,
+  handleValidationErrors, // Handle validation errors before calling the controller
   generateText
 );
 

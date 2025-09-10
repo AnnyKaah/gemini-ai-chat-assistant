@@ -1,4 +1,3 @@
-import { validationResult } from "express-validator";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import asyncHandler from "../utils/asyncHandler.js";
 
@@ -16,12 +15,6 @@ const model = genAI.getGenerativeModel({
 });
 
 export const generateText = asyncHandler(async (req, res, next) => {
-  // Run validation
-  const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res.status(400).json({ errors: errors.array() });
-  }
-
   // With multer, text data comes from req.body and the file from req.file
   const { prompt, personality } = req.body;
   const history = req.body.history ? JSON.parse(req.body.history) : [];
