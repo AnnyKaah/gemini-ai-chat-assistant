@@ -1,20 +1,23 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
 import asyncHandler from "../utils/asyncHandler.js";
 
-// Check for the API key on initialization
-if (!process.env.GOOGLE_API_KEY) {
-  throw new Error(
-    "The GOOGLE_API_KEY environment variable is not set. Create a .env file and add the key."
-  );
-}
-
-// Initialize the AI client once for reuse
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
-const model = genAI.getGenerativeModel({
-  model: process.env.GEMINI_MODEL || "gemini-1.5-flash-latest", // Use model from .env, with a fallback
-});
-
 export const generateText = asyncHandler(async (req, res, next) => {
+  // Check for the API key at the beginning of the request.
+  if (!process.env.GOOGLE_API_KEY) {
+    // It's important to return a JSON object for consistency.
+    return res.status(500).json({
+      message:
+        "The GOOGLE_API_KEY environment variable is not configured on the server.",
+    });
+  }
+
+  // Initialize the AI client within the handler to ensure it's always available
+  // and to avoid startup errors in serverless environments.
+  const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY);
+  const model = genAI.getGenerativeModel({
+    model: process.env.GEMINI_MODEL || "gemini-1.5-flash-latest",
+  });
+
   // With multer, text data comes from req.body and the file from req.file
   const { prompt, personality } = req.body;
   const history = req.body.history ? JSON.parse(req.body.history) : [];
